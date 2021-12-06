@@ -8,15 +8,11 @@ const fetchData =  async (searchTerm) => {
     console.log(response.data)
 }
 
-let timeoutId;
-const onInput = (event)=> {
-    clearTimeout(timeoutId)
-    timeoutId = setTimeout(() => {
-        fetchData(event.target.value) 
-    }, 5000);
-    
-}
 
+const onInput = (event)=> {
+        fetchData(event.target.value) 
+    };
+    
 const input = document.querySelector('input')
 
-input.addEventListener('input', onInput)
+input.addEventListener('input', debounce(onInput,500))
